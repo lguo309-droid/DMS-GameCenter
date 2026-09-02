@@ -1,5 +1,58 @@
-<!-- Example of embedding a game into your layout -->
-<div class="game-container">
-  <h2>My Retro Game</h2>
-  <iframe src="games/snake/index.html" width="800" height="600" title="Snake Game"></iframe>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My GitHub Arcade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">🕹️ GitHub Arcade</div>
+    <h1>Game Dashboard</h1>
+  </header>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <nav>
+        <ul>
+          <li><button class="filter-btn active" data-filter="all">All Games</button></li>
+          <li><button class="filter-btn" data-filter="native">Native JS</button></li>
+          <li><button class="filter-btn" data-filter="embedded">Embedded (iframe)</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="game-area">
+      <section class="game-grid" id="gameGrid">
+        
+        <div class="game-card" data-type="native">
+          <div class="game-thumbnail">⚡</div>
+          <h3>Canvas Snake</h3>
+          <p>Built from scratch using HTML5 Canvas API.</p>
+          <a href="games/snake/index.html" class="play-btn">Play Game</a>
+        </div>
+
+        <div class="game-card" data-type="embedded">
+          <div class="game-thumbnail">🌐</div>
+          <h3>Retro Space</h3>
+          <p>Embedded external retro web simulation.</p>
+          <a href="games/space/index.html" class="play-btn">Play Game</a>
+        </div>
+
+        <div class="game-card" data-type="native">
+          <div class="game-thumbnail">🪙</div>
+          <h3>Coin Clicker</h3>
+          <p>Pure JavaScript DOM micro-game.</p>
+          <a href="games/clicker/index.html" class="play-btn">Play Game</a>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
