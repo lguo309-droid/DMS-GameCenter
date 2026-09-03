@@ -17,13 +17,16 @@ function gameLoop() {
 }
 
 function update() {
+  // FIXED: Changed snake.x to snake[0].x and snake.y to snake[0].y
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
   
+  // Check wall collisions
   if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
     resetGame();
     return;
   }
   
+  // Check self collisions
   for (let i = 1; i < snake.length; i++) {
     if (snake[i].x === head.x && snake[i].y === head.y) {
       resetGame();
@@ -31,15 +34,19 @@ function update() {
     }
   }
 
+  // Add new head to the front
   snake.unshift(head);
 
+  // Check if snake ate the food
   if (head.x === food.x && head.y === food.y) {
     score++;
     generateFood();
   } else {
+    // Remove tail element if no food was eaten
     snake.pop();
   }
 }
+
 
 function draw() {
   ctx.fillStyle = "#1e293b";
