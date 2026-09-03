@@ -4,6 +4,7 @@ const ctx = canvas.getContext("2d");
 const gridSize = 20;
 const tileCount = canvas.width / gridSize;
 
+// The snake starts as a list containing one position object
 let snake = [{ x: 10, y: 10 }];
 let food = { x: 5, y: 5 };
 let dx = 0;
@@ -34,29 +35,31 @@ function update() {
     }
   }
 
-  // Add new head to the front
+  // Add new head position to the front of the snake array
   snake.unshift(head);
 
-  // Check if snake ate the food
+  // Check if snake head shares the exact tile as the food object
   if (head.x === food.x && head.y === food.y) {
     score++;
     generateFood();
   } else {
-    // Remove tail element if no food was eaten
+    // Remove the tail segment if no food was eaten to keep the snake moving forward
     snake.pop();
   }
 }
 
-
 function draw() {
+  // Clear the canvas window with the dark blue background color
   ctx.fillStyle = "#1e293b";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Draw the green snake body pieces onto our grid layout
   ctx.fillStyle = "#22c55e";
   snake.forEach(part => {
     ctx.fillRect(part.x * gridSize, part.y * gridSize, gridSize - 2, gridSize - 2);
   });
 
+  // Draw the red food target item onto our grid layout
   ctx.fillStyle = "#ef4444";
   ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
 }
@@ -84,3 +87,4 @@ window.addEventListener("keydown", e => {
 });
 
 gameLoop();
+
